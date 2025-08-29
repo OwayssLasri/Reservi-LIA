@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Réservi LIA - رفيقك السياحي في المغرب</title>
+    <!-- Favicon link, ensure 'logo.png' exists in your root directory -->
+    <link rel="shortcut icon" href="logo.png" type="image/x-icon">
+    <!-- Google Fonts: Cairo for modern Arabic typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome for a wide range of icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Custom CSS file for Réservi LIA styling -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="container navbar-container">
+            <div class="logo">
+                <a href="#">Réservi LIA</a>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#hero-section">الرئيسية</a></li>
+                    <li><a href="#tourism-spots">المناطق السياحية</a></li>
+                    <li><a href="#marketplace">السوق</a></li>
+                    <li><a href="#explorer-map">خريطة الاستكشاف</a></li>
+                    <li><a href="#gamification">نظام النقاط</a></li>
+                    <li><a href="#local-guide">مرشد محلي</a></li>
+                    <li><a href="#ai-support">مساعد الذكاء الاصطناعي</a></li>
+                </ul>
+            </nav>
+            <button class="login-btn" id="loginBtn">
+                <i class="fab fa-google"></i> تسجيل الدخول
+            </button>
+            <button class="menu-toggle" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <section id="hero-section" class="hero-section">
+        <div class="hero-bg-overlay"></div>
+        <!-- Ensure 'video-morocco.mp4' exists in a 'videos' folder -->
+        <video src="videos/video-morocco.mp4" autoplay muted loop preload="auto"></video>
+        <div class="container hero-content">
+            <h1>اكتشف سحر المغرب مع Réservi LIA</h1>
+            <p>رفيقك الشامل لرحلة سياحية آمنة وممتعة في قلب المغرب</p>
+            <a href="#tourism-spots" class="btn btn-primary">ابدأ رحلتك الآن <i class="fas fa-arrow-left"></i></a>
+        </div>
+    </section>
+
+    <main>
+        <!-- Tourism Spots Section with City Selection and Monument Narratives -->
+        <section id="tourism-spots" class="section tourism-section">
+            <div class="container">
+                <h2 class="section-title">وجهات سياحية لا تُنسى في المغرب</h2>
+                <p class="section-description">اختر مدينتك المفضلة لتكتشف كنوزها الخفية ومعالمها التاريخية.</p>
+
+                <div class="city-selection-area">
+                    <button class="btn btn-secondary" id="toggleCityDropdown">
+                        اختر مدينة <i class="fas fa-caret-down"></i>
+                    </button>
+                    <!-- City list dropdown, populated and controlled by JavaScript -->
+                    <ul id="cityDropdownList" class="city-dropdown-list">
+                        <li><a href="#" data-city-id="fez">فاس</a></li>
+                        <li><a href="#" data-city-id="rabat">الرباط</a></li>
+                        <li><a href="#" data-city-id="marrakech">مراكش</a></li>
+                        <li><a href="#" data-city-id="casablanca">الدار البيضاء</a></li>
+                        <li><a href="#" data-city-id="chefchaouen">شفشاون</a></li>
+                        <li><a href="#" data-city-id="tangier">طنجة</a></li>
+                        <li><a href="#" data-city-id="agadir">أغادير</a></li>
+                        <li><a href="#" data-city-id="essaouira">الصويرة</a></li>
+                        <li><a href="#" data-city-id="meknes">مكناس</a></li>
+                        <li><a href="#" data-city-id="ouarzazate">ورزازات</a></li>
+                        <li><a href="#" data-city-id="merzouga">مرزوكة</a></li>
+                        <li><a href="#" data-city-id="dakhla">الداخلة</a></li>
+                    </ul>
+                </div>
+
+                <!-- Container for displaying detailed city information -->
+                <div id="cityDetailContainer" class="city-detail-container" style="display: none;">
+                    <div class="city-info-card card">
+                        <!-- Placeholder for city image -->
+                        <img id="cityDetailImage" src="https://placehold.co/800x450/cad2c5/4a5759?text=صورة+المدينة" alt="صورة المدينة">
+                        <div class="card-content">
+                            <h3 id="cityDetailName"></h3>
+                            <p id="cityDetailDescription"></p>
+                            <div class="city-video-wrapper">
+                                <!-- Placeholder for city video -->
+                                <video id="cityDetailVideo" controls preload="metadata" poster="https://placehold.co/800x450/e0e0e0/555555?text=فيديو+المناطق+السياحية"></video>
+                            </div>
+                            <a href="#marketplace" class="btn btn-primary mt-4">استكشف المدينة في السوق <i class="fas fa-arrow-left"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr>
+
+        <!-- Marketplace Section -->
+        <section id="marketplace" class="section marketplace-section bg-light">
+            <div class="container">
+                <h2 class="section-title">السوق الشامل: خدمات ومنتجات مغربية</h2>
+                <p class="section-description">تصفح الخدمات الحديثة والمنتجات التقليدية، واحجز تجارب لا تُنسى.</p>
+
+                <div class="marketplace-categories">
+                    <button class="btn btn-primary category-filter-btn active" data-category="all">الكل</button>
+                    <button class="btn btn-primary category-filter-btn" data-category="modern">خدمات حديثة</button>
+                    <button class="btn btn-primary category-filter-btn" data-category="traditional">منتجات تقليدية</button>
+                    <button class="btn btn-primary category-filter-btn" data-category="accommodations">إقامات</button>
+                    <button class="btn btn-primary category-filter-btn" data-category="restaurants">مطاعم</button>
+                </div>
+
+                <div id="marketplaceListings" class="cards-grid mt-5">
+                    <!-- Placeholder for Modern Service Listing -->
+                    <div class="card marketplace-card modern">
+                        <img src="https://placehold.co/400x250/a2d2ff/333333?text=صورة+فندق" alt="صورة فندق فاخر">
+                        <div class="card-content">
+                            <h3>فندق الأحلام <span class="badge modern-badge">حديث</span></h3>
+                            <p class="listing-location"><i class="fas fa-map-marker-alt"></i> مراكش، جليز</p>
+                            <p class="listing-description">إقامة فاخرة بخدمات عالمية ومسابح رائعة.</p>
+                            <div class="listing-details">
+                                <span><i class="fas fa-dollar-sign"></i> 1200 درهم / الليلة</span>
+                                <span><i class="fas fa-star"></i> 4.8 تقييم</span>
+                            </div>
+                            <button class="btn btn-accent booking-btn">احجز الآن <i class="fas fa-bookmark"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- Placeholder for Traditional Product Listing -->
+                    <div class="card marketplace-card traditional">
+                        <img src="https://placehold.co/400x250/f08080/ffffff?text=صناعة+يدوية" alt="صناعة يدوية مغربية">
+                        <div class="card-content">
+                            <h3>طبق نحاسي تقليدي <span class="badge traditional-badge">تقليدي</span></h3>
+                            <p class="listing-location"><i class="fas fa-store"></i> متجر الفن الأصيل، فاس</p>
+                            <p class="listing-description">طبق نحاسي مصنوع يدوياً بفن ومهارة مغربية أصيلة.</p>
+                            <div class="listing-details">
+                                <span><i class="fas fa-tag"></i> 350 درهم</span>
+                                <span><i class="fas fa-th-large"></i> متوفر</span>
+                            </div>
+                            <button class="btn btn-primary">شراء الآن <i class="fas fa-shopping-bag"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- Placeholder for Restaurant Listing -->
+                    <div class="card marketplace-card restaurants">
+                        <img src="https://placehold.co/400x250/84a98c/212529?text=صورة+مطعم" alt="مطعم مغربي">
+                        <div class="card-content">
+                            <h3>مطعم دار الضيافة <span class="badge modern-badge">حديث</span></h3>
+                            <p class="listing-location"><i class="fas fa-map-marker-alt"></i> الرباط، حي المحيط</p>
+                            <p class="listing-description">أشهى المأكولات المغربية الأصيلة في جو عائلي.</p>
+                            <div class="listing-details">
+                                <span><i class="fas fa-utensils"></i> مغربي</span>
+                                <span><i class="fas fa-money-bill-wave"></i> متوسط السعر: 200 درهم</span>
+                            </div>
+                            <button class="btn btn-primary">عرض القائمة <i class="fas fa-angle-left"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- Placeholder for Sports Terrains -->
+                    <div class="card marketplace-card modern">
+                        <img src="https://placehold.co/400x250/6c757d/ffffff?text=ملعب+كرة+قدم" alt="ملعب كرة قدم للإيجار">
+                        <div class="card-content">
+                            <h3>ملعب كرة قدم <span class="badge modern-badge">حديث</span></h3>
+                            <p class="listing-location"><i class="fas fa-map-marker-alt"></i> الدار البيضاء، عين الذئاب</p>
+                            <p class="listing-description">ملعب كرة قدم بالعشب الاصطناعي، متوفر للحجز بالساعة.</p>
+                            <div class="listing-details">
+                                <span><i class="fas fa-futbol"></i> كرة قدم</span>
+                                <span><i class="fas fa-clock"></i> 300 درهم / ساعة</span>
+                            </div>
+                            <button class="btn btn-accent booking-btn">احجز الآن <i class="fas fa-calendar-alt"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- Add more placeholder cards as needed for demonstration -->
+                </div>
+            </div>
+        </section>
+
+        <hr>
+
+        <!-- Explorer Map Section -->
+        <section id="explorer-map" class="section explorer-map-section">
+            <div class="container">
+                <h2 class="section-title">خريطة الاستكشاف: ما حولك الآن</h2>
+                <p class="section-description">استكشف المعالم السياحية والمطاعم والشركاء القريبين منك في الوقت الفعلي.</p>
+                <div class="map-container card">
+                    <!-- Placeholder for the map integration -->
+                    <img src="https://placehold.co/1200x600/b0d9b1/2f3e46?text=خريطة+جوجل+هنا" alt="خريطة استكشاف">
+                    <p class="map-placeholder-text">ستظهر خريطة تفاعلية هنا لعرض النقاط المهمة والخدمات القريبة.</p>
+                </div>
+                <a href="#" class="btn btn-primary mt-4">عرض الخريطة بالكامل <i class="fas fa-search-location"></i></a>
+            </div>
+        </section>
+
+        <hr>
+
+        <!-- Gamification Section -->
+        <section id="gamification" class="section gamification-section bg-light">
+            <div class="container">
+                <h2 class="section-title">نظام النقاط: اكتشف واكسب</h2>
+                <p class="section-description">أكمل المهام، اجمع النقاط، وافتح المكافآت الحصرية لتجربة Réservi LIA المميزة.</p>
+
+                <div class="gamification-cards-grid cards-grid">
+                    <div class="card points-summary-card">
+                        <h3><i class="fas fa-star-half-alt"></i> نقاطك الحالية</h3>
+                        <span id="userPoints" class="points-display">0</span>
+                        <p>استخدم نقاطك لفتح مكافآت رائعة!</p>
+                        <button class="btn btn-primary">استبدال النقاط <i class="fas fa-gift"></i></button>
+                    </div>
+
+                    <div class="card quest-card">
+                        <h3><i class="fas fa-scroll"></i> مهام اليوم</h3>
+                        <ul id="dailyQuests" class="quest-list">
+                            <li><i class="far fa-circle"></i> زيارة معلم تاريخي (نقطة: 20)</li>
+                            <li><i class="far fa-circle"></i> نشر صورة سيلفي (نقطة: 15)</li>
+                            <li><i class="far fa-circle"></i> مراجعة مطعم (نقطة: 10)</li>
+                        </ul>
+                        <button class="btn btn-accent" id="completeTaskBtn">
+                            <i class="fas fa-check-circle"></i> أكمل مهمة
+                        </button>
+                    </div>
+
+                    <div class="card image-upload-card">
+                        <h3><i class="fas fa-camera-retro"></i> شاركنا لحظاتك</h3>
+                        <p>أرسل صورة من رحلتك وأضف وصفاً لها.</p>
+                        <form id="imageUploadForm" class="upload-form">
+                            <div class="form-group">
+                                <label for="imageFile" class="custom-file-upload">
+                                    <i class="fas fa-upload"></i> اختر صورة
+                                </label>
+                                <input type="file" id="imageFile" accept="image/*" required>
+                                <span id="fileName">لم يتم اختيار صورة</span>
+                            </div>
+                            <div class="form-group">
+                                <textarea id="imageDescription" placeholder="اكتب وصفاً للصورة... (مثل: 'نافورة جامع الفنا الرائعة!')" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-paper-plane"></i> إرسال الصورة
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr>
+
+        <!-- Local Guide Option Section -->
+        <section id="local-guide" class="section local-guide-section">
+            <div class="container">
+                <h2 class="section-title">مرشد محلي: لتجربة أصيلة</h2>
+                <p class="section-description">استأجر مرشداً محلياً لترجمة، تخطيط رحلات، وانغماس ثقافي عميق.</p>
+
+                <div class="local-guide-cards cards-grid">
+                    <div class="card guide-profile-card">
+                        <img src="https://placehold.co/400x250/cad2c5/4a5759?text=صورة+مرشد" alt="صورة مرشد سياحي">
+                        <div class="card-content">
+                            <h3>مرشد: أحمد العلوي</h3>
+                            <p><i class="fas fa-city"></i> فاس، مكناس</p>
+                            <p><i class="fas fa-language"></i> عربي، فرنسي، إنجليزي</p>
+                            <p class="guide-bio">أحمد مرشد سياحي ذو خبرة، متخصص في تاريخ فاس العريق.</p>
+                            <a href="#" class="btn btn-accent">احجز مرشداً <i class="fas fa-calendar-alt"></i></a>
+                        </div>
+                    </div>
+                    <!-- Add more placeholder guide profiles -->
+                    <div class="card guide-profile-card">
+                        <img src="https://placehold.co/400x250/b0d9b1/2f3e46?text=صورة+مرشدة" alt="صورة مرشدة سياحية">
+                        <div class="card-content">
+                            <h3>مرشدة: فاطمة الزهراء</h3>
+                            <p><i class="fas fa-city"></i> مراكش، الصويرة</p>
+                            <p><i class="fas fa-language"></i> عربي، إنجليزي، إسباني</p>
+                            <p class="guide-bio">فاطمة متخصصة في الجولات الثقافية وفنون الطبخ المغربي.</p>
+                            <a href="#" class="btn btn-accent">احجز مرشداً <i class="fas fa-calendar-alt"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <a href="#" class="btn mt-4">المزيد من المرشدين <i class="fas fa-users"></i></a>
+            </div>
+        </section>
+
+        <hr>
+
+        <!-- AI Support Section (Chatbot) -->
+        <section id="ai-support" class="section ai-support-section bg-light">
+            <div class="container">
+                <h2 class="section-title">
+                    <i class="fas fa-robot"></i> مساعدك الذكي دائمًا في خدمتك
+                </h2>
+                <p class="section-description">اسأل مساعدك الذكي عن أي شيء يتعلق برحلتك في المغرب، من التخطيط إلى الترجمة الفورية.</p>
+                <div class="ai-chat-box card">
+                    <div class="scroll-controls">
+                        <button class="scroll-btn scroll-to-bottom" title="الانتقال إلى الأسفل">
+                            <i class="fas fa-arrow-down"></i>
+                        </button>
+                        <button class="scroll-btn scroll-to-top" title="الانتقال إلى الأعلى">
+                            <i class="fas fa-arrow-up"></i>
+                        </button>
+                    </div>
+                    <div class="chat-messages" aria-live="polite">
+                        <!-- Initial AI welcome message -->
+                        <div class="message ai-message">
+                            <p>مرحباً بك في Réservi LIA! كيف يمكنني مساعدتك في رحلتك بالمغرب اليوم؟</p>
+                        </div>
+                    </div>
+                    <div class="chat-input">
+                        <input type="text" id="chatInput" placeholder="اكتب سؤالك هنا عن المغرب..." dir="rtl" aria-label="مدخل الدردشة مع مساعد الذكاء الاصطناعي">
+                        <button id="sendMessageBtn" title="إرسال رسالتك"><i class="fas fa-paper-plane"></i></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; 2025 Réservi LIA. جميع الحقوق محفوظة.</p>
+            <div class="social-links">
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom JavaScript file -->
+    <script src="script.js"></script>
+</body>
+</html>
